@@ -19,10 +19,10 @@ public class SuscripcionStreamingFamiliar extends SuscripcionStreaming {
 
     @Override
     public double calcularMontoFacturable() {
-        // TODO: Calcular tarifa bonificando 1 perfil adicional sin costo:
-        // Si perfilesAdicionales > 1, solo se cobran (perfilesAdicionales - 1) * costoPorPerfilAdicional.
-        // Si perfilesAdicionales <= 1, solo se cobra la tarifaBase.
-        // TODO [Campaña Super Familiar]: Bonificar 2 perfiles extra en lugar de 1 (cobrar solo a partir del 3er perfil).
-        return 0.0;
+        if (perfilesAdicionales > 1){
+            return (perfilesAdicionales - 1) * costoPorPerfilAdicional;
+        }else {
+            return tarifaBase;
+        }
     }
 }
