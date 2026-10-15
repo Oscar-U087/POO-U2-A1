@@ -56,6 +56,10 @@ public class Cliente {
 
     public void abonarSaldo(double monto) {
         // TODO: Validar que el monto no sea negativo ni cero (lanzar IllegalArgumentException).
+        if (monto <= 0){
+            throw new IllegalArgumentException();
+        }else
+            saldoDisponible = saldoDisponible + monto;
         // TODO: Incrementar el saldo disponible.
     }
 
