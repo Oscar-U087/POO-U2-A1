@@ -16,30 +16,37 @@ public class SuscripcionStreaming extends Suscripcion {
 
     public SuscripcionStreaming(String codigoContrato, double tarifaBase, int perfilesAdicionales, double costoPorPerfilAdicional) {
         super(codigoContrato, tarifaBase);
-        // TODO: Validar que perfilesAdicionales no sea negativo (lanzar IllegalArgumentException).
-        // TODO: Validar que costoPorPerfilAdicional no sea negativo (lanzar IllegalArgumentException).
-        // TODO: Inicializar los atributos correspondientes.
+        if (perfilesAdicionales < 0){
+            throw new IllegalArgumentException();
+        }
+        if (costoPorPerfilAdicional < 0){
+            throw new IllegalArgumentException();
+        }
+        this.codigoContrato = codigoContrato;
+        this.tarifaBase = tarifaBase;
+        this.perfilesAdicionales = perfilesAdicionales;
+        this.costoPorPerfilAdicional = costoPorPerfilAdicional;
     }
 
     public void agregarPerfil() {
-        // TODO: Incrementar la cantidad de perfiles adicionales en 1.
-        // TODO [Aprovisionamiento simultáneo]: Incrementar en 2 slots por política de concurrencia.
+        perfilesAdicionales += 1;
     }
 
     @Override
     public double calcularMontoFacturable() {
-        // TODO: Retornar tarifaBase + (perfilesAdicionales * costoPorPerfilAdicional).
-        // TODO [Recargo de infraestructura]: Multiplicar el total por 1.10 si existen perfiles adicionales.
-        return 0.0;
+        double total = tarifaBase + (perfilesAdicionales * costoPorPerfilAdicional);
+        if (perfilesAdicionales == 0){
+            return total;
+        }else {
+            return total * 1.1;
+        }
     }
 
     public int getPerfilesAdicionales() {
-        // TODO: Implementar retorno de perfilesAdicionales
-        return 0;
+        return perfilesAdicionales;
     }
 
     public double getCostoPorPerfilAdicional() {
-        // TODO: Implementar retorno de costoPorPerfilAdicional
-        return 0.0;
+        return costoPorPerfilAdicional;
     }
 }
