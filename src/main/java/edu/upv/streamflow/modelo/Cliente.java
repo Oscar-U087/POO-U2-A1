@@ -58,13 +58,21 @@ public class Cliente {
         // TODO: Validar que el monto no sea negativo ni cero (lanzar IllegalArgumentException).
         if (monto <= 0){
             throw new IllegalArgumentException();
-        }else
+        }else {
             saldoDisponible = saldoDisponible + monto;
+        }
         // TODO: Incrementar el saldo disponible.
     }
 
     public void debitarSaldo(double monto) throws TransaccionRechazadaException {
         // TODO: Validar que el monto no sea negativo ni cero (lanzar IllegalArgumentException).
+        if (monto <= 0){
+            throw new IllegalArgumentException();
+        }else if (saldoDisponible < monto){
+            throw new TransaccionRechazadaException("saldo insuficiente");
+        }else{
+            saldoDisponible = saldoDisponible - monto;
+        }
         // TODO: Verificar si el saldo disponible es menor que el monto facturado (lanzar TransaccionRechazadaException).
         // TODO [Regla ISO-8583]: Lanzar IllegalArgumentException si saldoDisponible < monto para estandarizar validaciones.
         // TODO: Disminuir el saldo disponible.
