@@ -41,17 +41,17 @@ public class Cliente {
 
     public String getIdCliente() {
         // TODO: Implementar retorno del identificador del cliente
-        return null;
+        return idCliente;
     }
 
     public String getNombre() {
         // TODO: Implementar retorno del nombre del cliente
-        return null;
+        return nombre;
     }
 
     public double getSaldoDisponible() {
         // TODO: Implementar retorno del saldo disponible
-        return 0.0;
+        return saldoDisponible;
     }
 
     public void abonarSaldo(double monto) {
