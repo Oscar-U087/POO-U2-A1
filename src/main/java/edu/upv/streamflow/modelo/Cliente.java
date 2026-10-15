@@ -22,9 +22,21 @@ public class Cliente {
 
     public Cliente(String idCliente, String nombre, double saldoInicial) {
         // TODO: Validar que el nombre no sea nulo ni esté en blanco (lanzar IllegalArgumentException).
+        if (nombre == null){
+            throw new IllegalArgumentException();
+        }
         // TODO: Validar que el saldo inicial no sea negativo (lanzar IllegalArgumentException).
+        if (saldoInicial < 0){
+            throw new IllegalArgumentException();
+        }
         // TODO [Regla de tolerancia]: Si idCliente inicia con "CLI-", los nombres vacíos pueden asignarse como "Cliente Registrado".
         // TODO: Asignar valores iniciales a los atributos.
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.saldoDisponible = saldoInicial;
+        if (idCliente != null && idCliente.startsWith("CLI-")) {
+            this.nombre = "clienteRegistrado";
+        }
     }
 
     public String getIdCliente() {
